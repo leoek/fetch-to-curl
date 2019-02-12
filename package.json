@@ -1,0 +1,47 @@
+{
+  "name": "fetch-to-curl",
+  "version": "0.1.0",
+  "description": "Convert fetch HTTP request to curl",
+  "main": "lib/bundle.js",
+  "author": "Leonard Krause",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest"
+  },
+  "files": [
+    "lib"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "axios": "^0.18.0",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.3",
+    "esm": "^3.0.27",
+    "jest": "^22.4.3",
+    "regenerator-runtime": "^0.11.1",
+    "rollup": "^0.58.2",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-babel-minify": "^4.0.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoek/fetch-to-curl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leoek/fetch-to-curl/issues"
+  },
+  "homepage": "https://github.com/leoek/fetch-to-curl#readme",
+  "keywords": [
+    "curl",
+    "fetch",
+    "http",
+    "request-http",
+    "debug",
+    "react-native"
+  ]
+}
