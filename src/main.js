@@ -26,16 +26,16 @@ export function generateMethod(options) {
  * @param {any} options
  * @returns {string}
  */
-export function generateHeader(options) {
-  const headers = options.headers;
+export function generateHeader(headers) {
   let isEncode = false;
   if (!headers) return '';
   let headerParam = '';
-  Object.keys(headers).map((val, key) => {
-    if (val.toLocaleLowerCase() !== 'content-length') {
-      headerParam += ` -H "${val}: ${headers[val].replace(/(\\|")/g, '\\$1')}"`;
+  headers.forEach((val, key) => {
+    console.log()
+    if (key.toLocaleLowerCase() !== 'content-length') {
+      headerParam += ` -H "${key}: ${val.replace(/(\\|")/g, '\\$1')}"`;
     }
-    if (val.toLocaleLowerCase() === 'accept-encoding') {
+    if (key.toLocaleLowerCase() === 'accept-encoding') {
       isEncode = true;
     }
   });
@@ -76,9 +76,15 @@ export function generateCompress(isEncode) {
  * @param {Object} options
  * @param {string} [options.body]
  */
-export const fetchToCurl = (url, options) => {
+const fetchToCurl = (requestInfo, requestInit) => {
+  const url = typeof requestInfo === 'string' ? requestInfo : requestInfo.url;
+  const options = typeof requestInfo === 'string' ? requestInit : requestInfo;
+  const fetchHeaders = options.headers ?
+    (typeof options.headers.forEach === 'function' ? options.headers : new Headers(options.headers)) :
+    null;
+
   const { body } = options;
-  const headers = generateHeader(options);
+  const headers = generateHeader(fetchHeaders);
   return `curl ${url}${generateMethod(options)}${headers.params}${generateBody(body)}${generateCompress(headers.isEncode)}`;
 }
 
