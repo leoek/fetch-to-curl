@@ -16,10 +16,10 @@
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
-    "jest": "^22.4.3",
-    "rollup": "^0.58.2",
-    "rollup-plugin-babel-minify": "^4.0.0",
-    "rollup-plugin-uglify": "^3.0.0"
+    "jest": "^24.9.0",
+    "rollup": "^1.21.4",
+    "rollup-plugin-babel-minify": "^9.0.0",
+    "rollup-plugin-terser": "^5.1.2"
   },
   "repository": {
     "type": "git",
