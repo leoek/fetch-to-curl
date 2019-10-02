@@ -4,7 +4,8 @@ import {
   generateHeader,
   generateUrl,
   generateBody,
-  generateCompress
+  generateCompress,
+  fetchToCurl
 } from '../src/main';
 
 describe('Generate method param', () => {
@@ -108,5 +109,19 @@ describe('Generate Compress param', () => {
   });
   test('Have compression', () => {
     expect(generateCompress(true)).toEqual(' --compressed');
+  });
+});
+
+describe('fetchToCurl', () => {
+  test('empty options', () => {
+    expect(
+      fetchToCurl('google.com', {})
+    ).toEqual('curl "google.com"');
+  });
+
+  test('no options', () => {
+    expect(
+      fetchToCurl('google.com')
+    ).toEqual('curl "google.com"');
   });
 });

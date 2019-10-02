@@ -76,10 +76,10 @@ export function generateCompress(isEncode) {
  * @param {Object} options
  * @param {string} [options.body]
  */
-export const fetchToCurl = (url, options) => {
+export const fetchToCurl = (url, options = {}) => {
   const { body } = options;
   const headers = generateHeader(options);
-  return `curl "${url}"${generateMethod(options)}${headers.params}${generateBody(body)}${generateCompress(headers.isEncode)}`;
+  return `curl "${url}"${generateMethod(options)}${headers.params || ''}${generateBody(body)}${generateCompress(headers.isEncode)}`;
 }
 
 export default fetchToCurl;
