@@ -26,12 +26,11 @@ export function generateMethod(options) {
  * @param {any} options
  * @returns {string}
  */
-export function generateHeader(options) {
-  const headers = options.headers;
+export const generateHeader = (options = {}) => {
+  const { headers = {} } = options;
   let isEncode = false;
-  if (!headers) return '';
   let headerParam = '';
-  Object.keys(headers).map((val, key) => {
+  Object.keys(headers).map(val => {
     if (val.toLocaleLowerCase() !== 'content-length') {
       headerParam += ` -H "${val}: ${headers[val].replace(/(\\|")/g, '\\$1')}"`;
     }
