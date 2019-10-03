@@ -20,11 +20,17 @@ export function generateMethod(options) {
 }
 
 /**
+ * @typedef {Object} Headers
+ * @property {Boolean} isEncode - A flag which is set to true if the request should set the --compressed flag
+ * @property {String} params - The header params as string
+ */
+
+/**
  *
  *
  * @export
  * @param {any} options
- * @returns {string}
+ * @returns {Headers} An Object with the header info
  */
 export const generateHeader = (options = {}) => {
   const { headers = {} } = options;
