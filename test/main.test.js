@@ -51,9 +51,36 @@ describe('Generate method param', () => {
 });
 
 describe('Generate header param', () => {
-  test('No Header Option', () => {
-    expect(generateHeader({})).toEqual('');
+  test('No Header Options', () => {
+    expect(generateHeader()).toEqual({
+      isEncode: false,
+      params: ""
+    });
   });
+
+  test('Empty Header Options', () => {
+    expect(generateHeader({})).toEqual({
+      isEncode: false,
+      params: ""
+    });
+  });
+
+  test('Has Encoded Header', () => {
+    const option = {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'axios/0.18.0',
+        'accept-encoding': 'gzip'
+      }
+    };
+    const result = {
+      isEncode: true,
+      params:
+        ' -H "Accept: application/json, text/plain, */*" -H "User-Agent: axios/0.18.0" -H "accept-encoding: gzip"'
+    };
+    expect(generateHeader(option)).toEqual(result);
+  });
+
   test('Has Header', () => {
     const option = {
       headers: {
