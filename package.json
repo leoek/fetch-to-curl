@@ -1,6 +1,6 @@
 {
   "name": "fetch-to-curl",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Convert fetch HTTP request to curl",
   "main": "lib/bundle.js",
   "author": "Leonard Krause",
