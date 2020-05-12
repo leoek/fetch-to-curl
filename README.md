@@ -14,7 +14,6 @@ yarn add fetch-to-curl
 
 ```js
 import fetchToCurl from 'fetch-to-curl';
-fetchToCurl();
 
 const url = 'https://jsonplaceholder.typicode.com/posts/1',
 const options = {
