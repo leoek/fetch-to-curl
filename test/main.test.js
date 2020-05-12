@@ -42,6 +42,18 @@ describe('Generate method param', () => {
     };
     expect(generateMethod(option)).toEqual(' -X DELETE');
   });
+  test('HEAD', () => {
+    const option = {
+      method: 'HEAD'
+    };
+    expect(generateMethod(option)).toEqual(' -X HEAD');
+  });
+  test('OPTIONS', () => {
+    const option = {
+      method: 'OPTIONS'
+    };
+    expect(generateMethod(option)).toEqual(' -X OPTIONS');
+  });
   test('Unknown method', () => {
     const option = {
       method: 'xxxx'

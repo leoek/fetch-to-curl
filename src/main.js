@@ -1,11 +1,11 @@
 /**
- *
+ * see https://fetch.spec.whatwg.org/#methods
  *
  * @export
  * @param {any} options
  * @returns {string}
  */
-export function generateMethod(options) {
+export const generateMethod = (options) => {
   const method = options.method;
   if (!method) return '';
   const type = {
@@ -14,9 +14,10 @@ export function generateMethod(options) {
     PUT: ' -X PUT',
     PATCH: ' -X PATCH',
     DELETE: ' -X DELETE',
+    HEAD: ' -X HEAD',
+    OPTIONS: ' -X OPTIONS'
   };
-  const methodParam = type[method.toUpperCase()];
-  return methodParam ? methodParam : '';
+  return type[method.toUpperCase()] || '';
 }
 
 /**
