@@ -1,4 +1,5 @@
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+![Tests & Build](https://github.com/leoek/fetch-to-curl/workflows/Test%20&%20Build/badge.svg)
 
 # fetch request to curl
 
