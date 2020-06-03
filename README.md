@@ -42,4 +42,4 @@ curl "https://jsonplaceholder.typicode.com/posts/1" -X GET -H "Authorization: BA
 
 ## Playgorund and usage without package manager
 
-There is a minimal example of usage without package manager available which allows to [directly test this in the browser console](https://htmlpreview.github.io/?https://github.com/leoek/fetch-to-curl/blob/master/playground.html). [(view source - playground.html)](https://github.com/leoek/fetch-to-curl/blob/master/playground.html)
+There is a minimal example of usage without package manager available which allows to [directly test this in the browser console](https://leoek.github.io/fetch-to-curl/playground.html). [(view source - playground.html)](https://github.com/leoek/fetch-to-curl/blob/master/playground.html)
