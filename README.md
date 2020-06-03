@@ -11,6 +11,12 @@ This module is based on [http-to-curl](https://github.com/drgx/http-to-curl). Us
 yarn add fetch-to-curl
 ```
 
+or
+
+```sh
+npm install fetch-to-curl
+```
+
 ## Usage
 
 ```js
@@ -18,11 +24,11 @@ import fetchToCurl from 'fetch-to-curl';
 // or In case there is no support for Es Modules in your environment:
 // const { fetchToCurl } = require("fetch-to-curl")
 
-const url = 'https://jsonplaceholder.typicode.com/posts/1',
+const url = 'https://jsonplaceholder.typicode.com/posts/1';
 const options = {
   headers: {
     Authorization: "BASIC SOMEBASE64STRING"
-  }
+  },
   method: 'get'
 };
 //Log yopur request
@@ -33,3 +39,7 @@ fetch(url, options);
 //Output
 curl "https://jsonplaceholder.typicode.com/posts/1" -X GET -H "Authorization: BASIC SOMEBASE64STRING"
 ```
+
+## Playgorund and usage without package manager
+
+There is a minimal example of usage without package manager available which allows to [directly test this in the browser console](https://htmlpreview.github.io/?https://github.com/leoek/fetch-to-curl/blob/master/playground.html). [(view source - playground.html)](https://github.com/leoek/fetch-to-curl/blob/master/playground.html)

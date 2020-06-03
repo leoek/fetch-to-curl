@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <style>
+      li {
+        margin-top: 1em;
+      }
+      code {
+        color: red;
+      }
+    </style>
+    <script>
+      var exports = {};
+    </script>
+    <script
+      src="https://unpkg.com/fetch-to-curl@0.4.0/lib/bundle.js"
+      crossorigin
+    ></script>
+    <script>
+      const { fetchToCurl } = exports;
+      const url = "https://jsonplaceholder.typicode.com/posts/1";
+      const options = {
+        mode: "no-cors",
+        headers: {
+          Authorization: "BASIC SOMEBASE64STRING",
+        },
+        method: "get",
+      };
+
+      //Log yopur request
+      console.log(fetchToCurl(url, options));
+      //Do your request
+      fetch(url, options);
+    </script>
+  </head>
+
+  <body>
+    <h1>fetch to curl Playground</h1>
+    <p>
+      Usually this library should be used together with a package manager like
+      <a href="https://yarnpkg.com/package/fetch-to-curl">yarn</a> or
+      <a href="https://www.npmjs.com/package/fetch-to-curl">npm</a>. (please
+      refer to the
+      <a href="https://github.com/leoek/fetch-to-curl/blob/master/README.md"
+        >README</a
+      >
+      for general usage information)
+    </p>
+    <p>
+      Note the creation of the exports object in line 11 of this html file,
+      which mitigates the missing module support of the browser.
+    </p>
+    <h2>How to use this playground</h2>
+    <li>Check your browser console (usually opens with F12)</li>
+    <li>
+      Try
+      <code
+        >fetchToCurl("https://example.com", { headers: { x-test: "test"
+        }})</code
+      >
+      or
+      <code
+        >console.log(fetchToCurl("https://example.com", { headers: { x-test:
+        "test" }}))</code
+      >
+      in your browser console
+    </li>
+    <li>
+      Note that the you can compare with the real request in the network tab.
+    </li>
+  </body>
+</html>
