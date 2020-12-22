@@ -12,6 +12,7 @@
   "files": [
     "lib"
   ],
+  "types": "types/main.d.ts",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.6",
