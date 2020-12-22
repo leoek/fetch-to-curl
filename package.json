@@ -10,7 +10,8 @@
     "test": "jest"
   },
   "files": [
-    "lib"
+    "lib/bundle.js",
+    "types"
   ],
   "types": "types/main.d.ts",
   "dependencies": {},
