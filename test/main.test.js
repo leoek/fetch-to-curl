@@ -151,15 +151,27 @@ describe('Generate Compress param', () => {
 });
 
 describe('fetchToCurl', () => {
-  test('empty options', () => {
+  test('url and empty options', () => {
     expect(
       fetchToCurl('google.com', {})
     ).toEqual('curl "google.com"');
   });
 
-  test('no options', () => {
+  test('url and no options', () => {
     expect(
       fetchToCurl('google.com')
     ).toEqual('curl "google.com"');
+  });
+
+  test('url and Request Object', () => {
+    expect(
+      fetchToCurl('google.com', { method: "POST" })
+    ).toEqual('curl "google.com" -X POST');
+  });
+
+  test('Request Object only', () => {
+    expect(
+      fetchToCurl({ url: "google.com", method: "POST" })
+    ).toEqual('curl "google.com" -X POST');
   });
 });

@@ -100,14 +100,40 @@ export function generateCompress(isEncode) {
 }
 
 /**
+ * @param {any} val
+ * @returns true if the envirtonment supports Headers and val is of instance Headers
+ */
+const isInstanceOfRequest = (val) => {
+  if (typeof Request !== "function"){
+    /**
+     * Environment does not support the Headers constructor
+     * old internet explorer?
+     */
+    return false;
+  }
+  return val instanceof Request;
+}
+
+/**
  *
  *
  * @export
- * @param {string} url
- * @param {Object} options
- * @param {string} [options.body]
+ * @param {string|object} requestInfo
+ * @param {object={}} requestInit
  */
-export const fetchToCurl = (url, options = {}) => {
+export const fetchToCurl = (requestInfo, requestInit) => {
+  let url, options;
+  /**
+   * initialization with an empty object is done here to
+   * keep everything backwards compatible to 0.4.0 and below
+   */
+  if (typeof requestInfo === "string") {
+    url = requestInfo;
+    options = requestInit || {};
+  } else {
+    url = (requestInfo || {}).url
+    options = requestInfo || {}
+  }
   const { body } = options;
   const headers = generateHeader(options);
   return `curl "${url}"${generateMethod(options)}${headers.params || ''}${generateBody(body)}${generateCompress(headers.isEncode)}`;

@@ -18,6 +18,7 @@ export class Headers implements Iterable<[string, string]> {
 }
 
 export interface FetchOptions {
+    url?: string;
     method?: "GET" | "POST" | "DELETE" | "PATCH" | "PUT" | "HEAD" | "OPTIONS";
     headers?: Headers | { [key: string]: string };
     body?: any;
@@ -25,8 +26,8 @@ export interface FetchOptions {
 }
 
 declare function fetchToCurl(
-    url: string,
-    options?: FetchOptions
+    requestInfo: string | FetchOptions,
+    requestInit?: FetchOptions
 ): string;
 
 export default fetchToCurl;
