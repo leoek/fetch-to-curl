@@ -21,30 +21,55 @@ export const generateMethod = (options) => {
 }
 
 /**
- * @typedef {Object} Headers
+ * @param {any} val
+ * @returns true if the envirtonment supports Headers and val is of instance Headers
+ */
+const isInstanceOfHeaders = (val) => {
+  if (typeof Headers !== "function"){
+    /**
+     * Environment does not support the Headers constructor
+     * old internet explorer?
+     */
+    return false;
+  }
+  return val instanceof Headers;
+}
+
+/**
+ * @typedef {Object} HeaderParams
  * @property {Boolean} isEncode - A flag which is set to true if the request should set the --compressed flag
  * @property {String} params - The header params as string
  */
 
+const getHeaderString = (name, val) => ` -H "${name}: ${val.replace(/(\\|")/g, '\\$1')}"`;
+
 /**
- *
- *
  * @export
- * @param {any} options
- * @returns {Headers} An Object with the header info
+ * @param {object={}} options
+ * @param {object|Headers} options.headers
+ * @returns {HeaderParams} An Object with the header info
  */
 export const generateHeader = (options = {}) => {
-  const { headers = {} } = options;
+  const { headers } = options;
   let isEncode = false;
   let headerParam = '';
-  Object.keys(headers).map(val => {
-    if (val.toLocaleLowerCase() !== 'content-length') {
-      headerParam += ` -H "${val}: ${headers[val].replace(/(\\|")/g, '\\$1')}"`;
-    }
-    if (val.toLocaleLowerCase() === 'accept-encoding') {
-      isEncode = true;
-    }
-  });
+  if (isInstanceOfHeaders(headers)){
+    headers.forEach((val, name) => {
+      headerParam += getHeaderString(name, val);
+      if (name.toLocaleLowerCase() === 'accept-encoding'){
+        isEncode = true;
+      }
+    })
+  } else if (headers){
+    Object.keys(headers).map(name => {
+      if (name.toLocaleLowerCase() !== 'content-length') {
+        headerParam += getHeaderString(name, headers[name]);
+      }
+      if (name.toLocaleLowerCase() === 'accept-encoding') {
+        isEncode = true;
+      }
+    });
+  }
   return {
     params: headerParam,
     isEncode,
