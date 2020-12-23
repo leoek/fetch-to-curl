@@ -1,6 +1,7 @@
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 ![Tests & Build](https://github.com/leoek/fetch-to-curl/workflows/Test%20&%20Build/badge.svg)
 [![codecov](https://codecov.io/gh/leoek/fetch-to-curl/branch/master/graph/badge.svg?token=K9L7Q3K1CL)](https://codecov.io/gh/leoek/fetch-to-curl)
+![Dependencies - David](https://david-dm.org/leoek/fetch-to-curl.svg)
 
 
 # fetch request to curl
