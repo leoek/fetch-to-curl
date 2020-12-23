@@ -56,7 +56,9 @@ export const generateHeader = (options = {}) => {
   let headerParam = '';
   if (isInstanceOfHeaders(headers)){
     headers.forEach((val, name) => {
-      headerParam += getHeaderString(name, val);
+      if (name.toLocaleLowerCase() !== 'content-length') {
+        headerParam += getHeaderString(name, val);
+      }
       if (name.toLocaleLowerCase() === 'accept-encoding'){
         isEncode = true;
       }

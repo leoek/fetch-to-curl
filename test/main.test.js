@@ -124,6 +124,11 @@ describe('Generate header param', () => {
     'accept-encoding': 'gzip',
   }
 
+  const testHeadersWithContentLength = {
+    ...testHeaders,
+    'content-length': "12345"
+  }
+
   test('correctly parses Headers from object without encoding', () => {
     checkGeneratedHeadersResult(generateHeader({
       headers: testHeaders
@@ -136,6 +141,12 @@ describe('Generate header param', () => {
     }), testHeadersWithEncoding, true)
   });
 
+  test('omits content-length Header when parsing headers from object', () => {
+    checkGeneratedHeadersResult(generateHeader({
+      headers: testHeadersWithContentLength
+    }), testHeaders, false)
+  });
+
   test('correctly parses Headers without encoding', () => {
     checkGeneratedHeadersResult(generateHeader({
       headers: new Headers(testHeaders)
@@ -146,6 +157,12 @@ describe('Generate header param', () => {
     checkGeneratedHeadersResult(generateHeader({
       headers: new Headers(testHeadersWithEncoding)
     }), testHeadersWithEncoding, true)
+  });
+
+  test('omits content-length Header when parsing headers from Headers object', () => {
+    checkGeneratedHeadersResult(generateHeader({
+      headers: new Headers(testHeadersWithContentLength)
+    }), testHeaders, false)
   });
 });
 
@@ -199,5 +216,11 @@ describe('fetchToCurl', () => {
     expect(
       fetchToCurl({ url: "google.com", method: "POST" })
     ).toEqual('curl "google.com" -X POST');
+  });
+
+  test('No Parameters', () => {
+    expect(
+      fetchToCurl()
+    ).toEqual('curl "undefined"');
   });
 });
