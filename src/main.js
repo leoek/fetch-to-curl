@@ -21,10 +21,11 @@ export const generateMethod = (options) => {
 }
 
 /**
+ * @export
  * @param {any} val
  * @returns true if the envirtonment supports Headers and val is of instance Headers
  */
-const isInstanceOfHeaders = (val) => {
+export const isInstanceOfHeaders = (val) => {
   if (typeof Headers !== "function"){
     /**
      * Environment does not support the Headers constructor
@@ -97,21 +98,6 @@ export function generateBody(body) {
  */
 export function generateCompress(isEncode) {
   return isEncode ? ' --compressed' : '';
-}
-
-/**
- * @param {any} val
- * @returns true if the envirtonment supports Headers and val is of instance Headers
- */
-const isInstanceOfRequest = (val) => {
-  if (typeof Request !== "function"){
-    /**
-     * Environment does not support the Headers constructor
-     * old internet explorer?
-     */
-    return false;
-  }
-  return val instanceof Request;
 }
 
 /**

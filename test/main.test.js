@@ -1,8 +1,7 @@
 import {
-  curlGenerator,
+  isInstanceOfHeaders,
   generateMethod,
   generateHeader,
-  generateUrl,
   generateBody,
   generateCompress,
   fetchToCurl
@@ -17,6 +16,33 @@ const checkGeneratedHeadersResult = (generated, expectedHeaders, expectedEncodin
     expect(generated.params.includes(`-H "${name}: ${value}"`) || generated.params.includes(`-H "${name.toLowerCase()}: ${value}"`)).toBeTruthy();
   })
 }
+
+describe('Environment wich supports Headers', () => {
+  test('isInstanceOfHeaders detects Headers object correctly', () => {
+    expect(isInstanceOfHeaders(new Headers())).toBeTruthy();
+  });
+  test('isInstanceOfHeaders detects plain js object correctly', () => {
+    expect(isInstanceOfHeaders({})).toBeFalsy();
+  });
+  test('isInstanceOfHeaders detects falsy values correctly', () => {
+    expect(isInstanceOfHeaders(null)).toBeFalsy();
+    expect(isInstanceOfHeaders()).toBeFalsy();
+  });
+})
+
+
+describe('Environment wich does not support Headers', () => {
+  const originalHeaders = Headers;
+  beforeEach(() => {
+    delete global.Headers
+  })
+  afterEach(() => {
+    global.Headers = originalHeaders;
+  })
+  test('isInstanceOfHeaders returns false if Headers constructor is not available', () => {
+    expect(isInstanceOfHeaders({})).toBeFalsy()
+  });
+})
 
 describe('Generate method param', () => {
   test('No method', () => {
