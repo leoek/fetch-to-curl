@@ -3,7 +3,9 @@
 
 # fetch request to curl
 
-This module is based on [http-to-curl](https://github.com/drgx/http-to-curl). Use it to generate curl requests with the inputs you would usually use for javascripts fetch. However it does not patch any modules like http-to-curl. It is just a wrapper to generate the curl string.
+This module was inspired by [http-to-curl](https://github.com/drgx/http-to-curl). Use it to generate curl requests with the inputs you would usually use for javascripts fetch. However it does not patch any modules like http-to-curl. It is just a wrapper to generate the curl string. This ensures that there are no side effects with your actual usage of fetch.
+
+Also note that the goal of this library is to be as simple and minimal as possible. This also means that there are zero dependencies :tada:
 
 ## Installation
 
@@ -31,13 +33,32 @@ const options = {
   },
   method: 'get'
 };
-//Log yopur request
+// Log yopur request
 console.log(fetchToCurl(url, options));
-//Do your request
+// Do your request
 fetch(url, options);
 
-//Output
+// Output
 curl "https://jsonplaceholder.typicode.com/posts/1" -X GET -H "Authorization: BASIC SOMEBASE64STRING"
+
+// You can also pass a single Request object 
+console.log(fetchToCurl({
+  url: "https://jsonplaceholder.typicode.com/posts/1"
+  headers: {
+    Authorization: "BASIC SOMEBASE64STRING"
+  },
+  method: 'get'
+}));
+
+// and/or a Headers object as you would to with fetch
+console.log(fetchToCurl({
+  url: "https://jsonplaceholder.typicode.com/posts/1"
+  headers: new Headers({
+    Authorization: "BASIC SOMEBASE64STRING"
+  }),
+  method: 'get'
+}))
+
 ```
 
 ## Playgorund and usage without package manager
