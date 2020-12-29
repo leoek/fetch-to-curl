@@ -88,7 +88,10 @@ export const generateHeader = (options = {}) => {
  */
 export function generateBody(body) {
   if (!body) return '';
-  return ` --data-binary ${JSON.stringify(body)}`;
+  if (typeof body === "object"){
+    return ` --data-binary '${JSON.stringify(body)}'`;
+  }
+  return ` --data-binary '${body}'`;
 }
 
 /**
@@ -124,7 +127,7 @@ export const fetchToCurl = (requestInfo, requestInit) => {
   }
   const { body } = options;
   const headers = generateHeader(options);
-  return `curl "${url}"${generateMethod(options)}${headers.params || ''}${generateBody(body)}${generateCompress(headers.isEncode)}`;
+  return `curl '${url}'${generateMethod(options)}${headers.params || ''}${generateBody(body)}${generateCompress(headers.isEncode)}`;
 }
 
 export default fetchToCurl;
