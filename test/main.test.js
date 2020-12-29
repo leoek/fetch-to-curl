@@ -171,15 +171,19 @@ describe('Generate body param', () => {
     expect(generateBody()).toEqual('');
   });
   test('String Body', () => {
-    expect(generateBody('a')).toEqual(' --data-binary "a"');
+    expect(generateBody('a')).toEqual(" --data-binary 'a'");
+  });
+  test('Number Body', () => {
+    expect(generateBody(12345)).toEqual(" --data-binary '12345'");
   });
   test('Object Body', () => {
     const options = {
       test: 'test:',
-      test2: 'lala'
+      testNumber: 12345,
+      testDate: new Date(1609251707077)
     };
     expect(generateBody(options)).toEqual(
-      ' --data-binary {"test":"test:","test2":"lala"}'
+      ' --data-binary \'{"test":"test:","testNumber":12345,"testDate":"2020-12-29T14:21:47.077Z"}\''
     );
   });
 });
@@ -197,30 +201,30 @@ describe('fetchToCurl', () => {
   test('url and empty options', () => {
     expect(
       fetchToCurl('google.com', {})
-    ).toEqual('curl "google.com"');
+    ).toEqual("curl 'google.com'");
   });
 
   test('url and no options', () => {
     expect(
       fetchToCurl('google.com')
-    ).toEqual('curl "google.com"');
+    ).toEqual("curl 'google.com'");
   });
 
   test('url and Request Object', () => {
     expect(
       fetchToCurl('google.com', { method: "POST" })
-    ).toEqual('curl "google.com" -X POST');
+    ).toEqual("curl 'google.com' -X POST");
   });
 
   test('Request Object only', () => {
     expect(
       fetchToCurl({ url: "google.com", method: "POST" })
-    ).toEqual('curl "google.com" -X POST');
+    ).toEqual("curl 'google.com' -X POST");
   });
 
   test('No Parameters', () => {
     expect(
       fetchToCurl()
-    ).toEqual('curl "undefined"');
+    ).toEqual("curl 'undefined'");
   });
 });
