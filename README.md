@@ -64,6 +64,6 @@ console.log(fetchToCurl({
 
 ```
 
-## Playgorund and usage without package manager
+## Playground and usage without package manager
 
 There is a minimal example of usage without package manager available which allows to [directly test this in the browser console](https://leoek.github.io/fetch-to-curl/playground.html). [(view source - playground.html)](https://github.com/leoek/fetch-to-curl/blob/master/playground.html)
