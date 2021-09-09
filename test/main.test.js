@@ -198,19 +198,25 @@ describe('Generate Compress param', () => {
 });
 
 describe('fetchToCurl', () => {
-  test('url and empty options', () => {
+  test('url string and empty options', () => {
     expect(
       fetchToCurl('google.com', {})
     ).toEqual("curl 'google.com'");
   });
 
-  test('url and no options', () => {
+  test('url object and empty options', () => {
+    expect(
+      fetchToCurl(new URL('https://google.com/'), {})
+    ).toEqual("curl 'https://google.com/'");
+  });
+
+  test('url string and no options', () => {
     expect(
       fetchToCurl('google.com')
     ).toEqual("curl 'google.com'");
   });
 
-  test('url and Request Object', () => {
+  test('url string and Request Object', () => {
     expect(
       fetchToCurl('google.com', { method: "POST" })
     ).toEqual("curl 'google.com' -X POST");
