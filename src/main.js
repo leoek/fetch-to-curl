@@ -118,7 +118,7 @@ export const fetchToCurl = (requestInfo, requestInit) => {
    * initialization with an empty object is done here to
    * keep everything backwards compatible to 0.4.0 and below
    */
-  if (typeof requestInfo === "string") {
+  if (typeof requestInfo === "string" || requestInfo instanceof URL) {
     url = requestInfo;
     options = requestInit || {};
   } else {
