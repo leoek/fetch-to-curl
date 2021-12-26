@@ -42,7 +42,7 @@ export const isInstanceOfHeaders = (val) => {
  * @property {String} params - The header params as string
  */
 
-const getHeaderString = (name, val) => ` -H "${name}: ${val.replace(/(\\|")/g, '\\$1')}"`;
+const getHeaderString = (name, val) => ` -H "${name}: ${`${val}`.replace(/(\\|")/g, '\\$1')}"`;
 
 /**
  * @export
