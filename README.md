@@ -26,7 +26,7 @@ npm install fetch-to-curl
 ## Usage
 
 ```js
-import fetchToCurl from 'fetch-to-curl';
+import { fetchToCurl } from 'fetch-to-curl';
 // or In case there is no support for Es Modules in your environment:
 // const { fetchToCurl } = require("fetch-to-curl")
 
