@@ -80,8 +80,16 @@ export const generateHeader = (options = {}) => {
 }
 
 /**
- *
- *
+ * @export
+ * @param {Object} body
+ * @returns {string}
+ */
+export function escapeBody(body) {
+  if (typeof body !== 'string') return body
+  return body.replace(/'/g, `'\\''`)
+}
+
+/**
  * @export
  * @param {Object} body
  * @returns {string}
@@ -89,14 +97,12 @@ export const generateHeader = (options = {}) => {
 export function generateBody(body) {
   if (!body) return '';
   if (typeof body === "object"){
-    return ` --data-binary '${JSON.stringify(body)}'`;
+    return ` --data-binary '${escapeBody(JSON.stringify(body))}'`;
   }
-  return ` --data-binary '${body}'`;
+  return ` --data-binary '${escapeBody(body)}'`;
 }
 
 /**
- *
- *
  * @export
  * @param {boolean} isEncode
  * @return {string}
@@ -106,8 +112,6 @@ export function generateCompress(isEncode) {
 }
 
 /**
- *
- *
  * @export
  * @param {string|object} requestInfo
  * @param {object={}} requestInit

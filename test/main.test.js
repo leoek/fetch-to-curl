@@ -180,10 +180,11 @@ describe('Generate body param', () => {
     const options = {
       test: 'test:',
       testNumber: 12345,
-      testDate: new Date(1609251707077)
+      testDate: new Date(1609251707077),
+      testQuotes: `'test'`
     };
     expect(generateBody(options)).toEqual(
-      ' --data-binary \'{"test":"test:","testNumber":12345,"testDate":"2020-12-29T14:21:47.077Z"}\''
+      ` --data-binary '{"test":"test:","testNumber":12345,"testDate":"2020-12-29T14:21:47.077Z","testQuotes":"'\\''test'\\''"}'`
     );
   });
 });
