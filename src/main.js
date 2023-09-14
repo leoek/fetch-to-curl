@@ -56,6 +56,7 @@ export const generateHeader = (options = {}) => {
   let headerParam = '';
   if (isInstanceOfHeaders(headers)){
     headers.forEach((val, name) => {
+      if (val === undefined) return;
       if (name.toLocaleLowerCase() !== 'content-length') {
         headerParam += getHeaderString(name, val);
       }
@@ -64,7 +65,7 @@ export const generateHeader = (options = {}) => {
       }
     })
   } else if (headers){
-    Object.keys(headers).map(name => {
+    Object.keys(headers).filter(name => headers[name] !== undefined).map(name => {
       if (name.toLocaleLowerCase() !== 'content-length') {
         headerParam += getHeaderString(name, headers[name]);
       }
