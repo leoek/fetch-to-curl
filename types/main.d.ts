@@ -28,7 +28,7 @@ export interface FetchOptions {
     [rest: string]: any 
 }
 
-declare function fetchToCurl(
+export declare function fetchToCurl(
     requestInfo: string | FetchOptions,
     requestInit?: FetchOptions
 ): string;
